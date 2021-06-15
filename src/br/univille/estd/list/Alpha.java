@@ -22,8 +22,10 @@ public class Alpha<T> {
 		if(first_package) {
 			RECEIVED_PACKAGE_COUNTER = 1;
 			String first_package_sent = Integer.toBinaryString(this.capacity);
-			first_package_sent = String.format("%012d", first_package_sent);
-			array.addFirst(first_package_sent);
+//			first_package_sent = String.format("%012d", first_package_sent);
+			System.out.println("passou aqui");
+			array.add(0, first_package_sent);
+			System.out.println("depois aqui");
 			first_package = false;
 		}
 		if(!seventy_porcent_sent && ((RECEIVED_PACKAGE_COUNTER + 1)/this.capacity >= 0.7)) {
@@ -32,6 +34,7 @@ public class Alpha<T> {
 			}
 			this.seventy_porcent_sent = true;
 		}
+		System.out.print("teste");
 		array.add(RECEIVED_PACKAGE_COUNTER, data);
 		RECEIVED_PACKAGE_COUNTER++;
 		if(this.seventy_porcent_sent) {

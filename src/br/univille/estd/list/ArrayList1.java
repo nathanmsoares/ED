@@ -2,7 +2,7 @@ package br.univille.estd.list;
 
 public class ArrayList1<T>  implements List<T>  {
 
-    // valor padrão para a capacidade do vetor.
+    // valor padrï¿½o para a capacidade do vetor.
     private final static int DEFAULT_CAPACITY = 100;
 
     protected int size;
@@ -14,6 +14,7 @@ public class ArrayList1<T>  implements List<T>  {
     }
 
     public ArrayList1(int capacity){
+        System.out.println(capacity);
         size = 0;
         this.capacity = capacity;
         array = (T[]) new Object[capacity];
@@ -135,7 +136,7 @@ public class ArrayList1<T>  implements List<T>  {
 
     private void checkPosition(int position){
         if(position < 0 || position >= size())
-            throw new IndexOutOfBoundsException("Posição ["+position+"] inválida para uma lista de tamanho ["+size()+"].");
+            throw new IndexOutOfBoundsException("Posiï¿½ï¿½o ["+position+"] invï¿½lida para uma lista de tamanho ["+size()+"].");
 
     }
 
