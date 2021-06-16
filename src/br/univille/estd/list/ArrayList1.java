@@ -68,7 +68,8 @@ public class ArrayList1<T>  implements List<T>  {
 
     @Override
     public void add(int position, T value) {
-        checkPosition(position);
+        if(position < 0 || position > size())
+        throw new IndexOutOfBoundsException("Posi��o ["+position+"] inv�lida para uma lista de tamanho ["+size()+"].");
         ensureCapacity(size+1);
         for(int i = size; i >= position; i--){
             array[i] = array[i-1];
