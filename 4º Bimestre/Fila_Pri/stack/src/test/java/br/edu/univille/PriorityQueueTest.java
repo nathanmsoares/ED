@@ -1,5 +1,8 @@
 package br.edu.univille;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -9,7 +12,7 @@ public class PriorityQueueTest {
         /*
         * We will setup the environment for the next tests.
         */
-    @Before
+    @Test
     public void settingUp(){
         /*
         * We will setup the environment for the next tests.
@@ -20,11 +23,16 @@ public class PriorityQueueTest {
         Customer customer3 = new Customer(2, "Dor de cabeça");
         Customer customer4 = new Customer(1, "Dor de cabeça");
         Customer customer5 = new Customer(4, "Dor de cabeça");
-    }
+        // Execute
+        queue.insert(5, "Dor de cabeça");
+        queue.insert(4, "Dor de Barriga");
+        queue.insert(3, "Dor Muscular");
+        queue.insert(2, "Dor no Braço");
+        queue.insert(1, "Dor de cabeça extrema");
+        Integer teste = 5;
+        assertEquals(5, queue.size());
 
-    @Test
-    public void testingInsert() {
-        queue.insert()
+
     }
     
 }

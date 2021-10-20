@@ -1,8 +1,8 @@
 package br.edu.univille;
 
-// import java.util.Comparator;
+import java.util.Comparator;
 
-public class Customer implements Entry<Integer, String>{
+public class Customer implements Entry<Integer, String>, Comparator<Customer>{
 
     private Integer key;
     private String value;
@@ -40,10 +40,10 @@ public class Customer implements Entry<Integer, String>{
     }
 
 
-    // @Override
-    // public int compare(Customer o1, Customer o2) {
-    //     if(o2.getKey() > o1.getKey()) return 1;
-    //     if(o2.getKey() < o1.getKey()) return -1;
-    //     return 0;
-    // }
+    @Override
+    public int compare(Customer o1, Customer o2) {
+        if(o2.getKey() > o1.getKey()) return 1;
+        if(o2.getKey() < o1.getKey()) return -1;
+        return 0;
+    }
 }

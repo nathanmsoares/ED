@@ -1,5 +1,7 @@
 package br.edu.univille;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class PriorityQueue<K, V>{
@@ -8,6 +10,7 @@ public class PriorityQueue<K, V>{
 
     public int size(){
         // O(1)
+        System.out.println(list.size());
         return list.size();
     }
 
@@ -23,24 +26,32 @@ public class PriorityQueue<K, V>{
     }
 
     public Entry<Integer, String> insert(Integer key, String value){
-        // O(n²)
-        // On line 36 we will have to do a loop twice, so in the worst case, we will have O(n²)
-        Customer newCustomer = new Customer(key, value);
-        for (int i = 0; i < list.size(); i++) {
-            if(list.size() == 0) {
-                list.addFirst(newCustomer);
-                return newCustomer;
-            }else if(newCustomer.getKey() >= list.getLast().getKey()){
-                list.addLast(newCustomer);
-                return newCustomer;
-            }else if(list.get(i-1).getKey() < newCustomer.getKey() && list.get(i+1).getKey() > newCustomer.getKey()) {
-                list.add(i, newCustomer);
-                return newCustomer;
+        // O(n)
+
+        Collections.sort(list, new Comparator<Customer>() {
+            @Override
+            public int compare(Customer o1, Customer o2) {
+                if(o2.getKey() > o1.getKey()) return 1;
+                if(o2.getKey() < o1.getKey()) return -1;
+                return 0;
             }
+        });
+        Customer newCustomer = new Customer(key, value);
+        if(list.size() == 0) {
+            list.addFirst(newCustomer);
+            return newCustomer;
+        } else {
+            list.add(newCustomer);
+            Collections.sort(list, new Comparator<Customer>() {
+                @Override
+                public int compare(Customer o1, Customer o2) {
+                    if(o2.getKey() > o1.getKey()) return 1;
+                    if(o2.getKey() < o1.getKey()) return -1;
+                    return 0;
+                }
+            });
+            return newCustomer;
         }
-        // Entry<Integer, String> temp = newCustomer;
-        return newCustomer;
-        // return new Entry<K, V>;
     }
 
     public Entry<Integer, String> removeMin(){
