@@ -47,6 +47,8 @@ public class PriorityQueue<K, V>{
                 public int compare(Customer o1, Customer o2) {
                     if(o2.getKey() > o1.getKey()) return 1;
                     if(o2.getKey() < o1.getKey()) return -1;
+                    // if(o2.getKey() == o1.getKey() && !o2.getValue().equals(o1.getValue())) return -1;
+                    // if(o2.getKey() == o1.getKey() && o2.getValue().equals(o1.getValue())) return -1;
                     return 0;
                 }
             });

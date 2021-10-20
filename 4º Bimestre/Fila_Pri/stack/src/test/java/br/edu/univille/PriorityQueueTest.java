@@ -18,19 +18,16 @@ public class PriorityQueueTest {
         * We will setup the environment for the next tests.
         */
         PriorityQueue queue = new PriorityQueue();
-        Customer customer1 = new Customer(5, "Dor de cabeça");
-        Customer customer2 = new Customer(3, "Dor de cabeça");
-        Customer customer3 = new Customer(2, "Dor de cabeça");
-        Customer customer4 = new Customer(1, "Dor de cabeça");
-        Customer customer5 = new Customer(4, "Dor de cabeça");
         // Execute
-        queue.insert(5, "Dor de cabeça");
-        queue.insert(4, "Dor de Barriga");
-        queue.insert(3, "Dor Muscular");
-        queue.insert(2, "Dor no Braço");
-        queue.insert(1, "Dor de cabeça extrema");
-        Integer teste = 5;
-        assertEquals(5, queue.size());
+        Entry<Integer, String> customer1 = queue.insert(5, "Dor de cabeça");
+        Entry<Integer, String> customer6 = queue.insert(5, "Dor de cabeça");
+        Entry<Integer, String> customer2 = queue.insert(4, "Dor de Barriga");
+        Entry<Integer, String> customer3 = queue.insert(3, "Dor Muscular");
+        Entry<Integer, String> customer4 = queue.insert(2, "Dor no Braço");
+        Entry<Integer, String> customer5 = queue.insert(1, "Dor de cabeça extrema");
+        int teste = 6;
+        assertEquals(teste, queue.size());
+        assertEquals(customer6, queue.insert(5, "Dor de cabeça"));
 
 
     }
