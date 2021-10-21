@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-public class PriorityQueue<K, V>{
+public class PriorityQueue{
 
     LinkedList<Customer> list  = new LinkedList<>();
 
@@ -16,26 +16,23 @@ public class PriorityQueue<K, V>{
 
     public boolean isEmpty(){
         // O(1)
-
         return list.isEmpty();
     }
 
-    public Entry<Integer, String> min(){
+    public Entry<Integer, String> min() throws NullPointerException{
         // O(1)
-        return list.peek();
+        Entry<Integer, String> temp =  list.peekFirst();
+        if(temp == null){
+            throw new NullPointerException("Empty ");
+
+        } else {
+            return temp;
+        }
     }
 
     public Entry<Integer, String> insert(Integer key, String value){
-        // O(n)
+        // O(n*log(n))
 
-        Collections.sort(list, new Comparator<Customer>() {
-            @Override
-            public int compare(Customer o1, Customer o2) {
-                if(o2.getKey() > o1.getKey()) return 1;
-                if(o2.getKey() < o1.getKey()) return -1;
-                return 0;
-            }
-        });
         Customer newCustomer = new Customer(key, value);
         if(list.size() == 0) {
             list.addFirst(newCustomer);
@@ -45,10 +42,8 @@ public class PriorityQueue<K, V>{
             Collections.sort(list, new Comparator<Customer>() {
                 @Override
                 public int compare(Customer o1, Customer o2) {
-                    if(o2.getKey() > o1.getKey()) return 1;
-                    if(o2.getKey() < o1.getKey()) return -1;
-                    // if(o2.getKey() == o1.getKey() && !o2.getValue().equals(o1.getValue())) return -1;
-                    // if(o2.getKey() == o1.getKey() && o2.getValue().equals(o1.getValue())) return -1;
+                    if(o2.getKey() > o1.getKey()) return -1;
+                    if(o2.getKey() < o1.getKey()) return 1;
                     return 0;
                 }
             });
@@ -56,9 +51,13 @@ public class PriorityQueue<K, V>{
         }
     }
 
-    public Entry<Integer, String> removeMin(){
+    public Entry<Integer, String> removeMin() throws NullPointerException{
         // O(1)
-        return list.poll();
+        if (list.size() == 0){
+            throw new NullPointerException();
+        } else {
+            return list.poll();
+        }
     }
 
     
